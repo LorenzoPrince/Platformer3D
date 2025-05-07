@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem; //para llamar al paquete de el inputsystem nuevo
+using UnityEngine.SceneManagement;
 // [RequireComponent(typeof(CharacterController))] //previene errores agrega automaticamente unity el componente
 public class MyNewPlayer : MonoBehaviour
 {
@@ -85,6 +86,14 @@ public class MyNewPlayer : MonoBehaviour
         {
             isGrounded = true;
         }
+        if (contraLoQueChoque.gameObject.CompareTag("Death"))
+        {
+            Restart();
+        }
 
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

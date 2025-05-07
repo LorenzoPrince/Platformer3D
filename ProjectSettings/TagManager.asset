@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Pizo
+  - Coin1
+  - Coin2
+  - Coin3
   layers:
   - Default
   - TransparentFX
