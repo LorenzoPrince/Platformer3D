@@ -26,7 +26,7 @@ public class MyNewPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate() //hace que vaya intervalos fisicos de tiempo.
     {
   
             Vector3 camForward = playerCamera.transform.forward;
@@ -46,7 +46,7 @@ public class MyNewPlayer : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
 
-            rigidBody.AddForce(movement * movementSpeed, ForceMode.Impulse);
+            rigidBody.AddForce(movement * movementSpeed, ForceMode.VelocityChange); // toma directamente la nueva velocidad impulse empuja entonce se nota
        
 
 
