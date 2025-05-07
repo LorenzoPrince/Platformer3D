@@ -9,6 +9,8 @@ TagManager:
   - Coin2
   - Coin3
   - Death
+  - Checkpoint
+  - CoinEnd
   layers:
   - Default
   - TransparentFX

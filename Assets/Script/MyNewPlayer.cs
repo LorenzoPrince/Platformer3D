@@ -13,6 +13,7 @@ public class MyNewPlayer : MonoBehaviour
     public int rotationSpeed = 2;
     private Vector2 inputMovement;
     public Transform playerCamera;
+    private bool checkpoint1 = false;
     private void Awake() // esto se llama antes de que inicie el juego recomendable para cosas como rigybidy etc
     {
 
@@ -48,6 +49,7 @@ public class MyNewPlayer : MonoBehaviour
             }
 
             rigidBody.AddForce(movement * movementSpeed, ForceMode.VelocityChange); // toma directamente la nueva velocidad impulse empuja entonce se nota
+        // el velocity empieza al toque a 10 de velocidad en cambio el inpulse va de apoco hasta ese
        
 
 
@@ -88,12 +90,31 @@ public class MyNewPlayer : MonoBehaviour
         }
         if (contraLoQueChoque.gameObject.CompareTag("Death"))
         {
+            if (checkpoint1)
+            {
+                checkpointActivity();
+            }
+            else 
+            { 
             Restart();
+            }
+        }
+        if (contraLoQueChoque.gameObject.CompareTag("Checkpoint"))
+        {
+            checkpoint1 = true;
+        }
+        if (contraLoQueChoque.gameObject.CompareTag("CoinEnd"))
+        {
+
         }
 
     }
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void checkpointActivity()
+    {
+        transform.position = new Vector3(-8.466f, -8.32f, 330.7f);
     }
 }
