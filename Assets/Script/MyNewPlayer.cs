@@ -9,13 +9,15 @@ public class MyNewPlayer : MonoBehaviour
     public float gravity = -9.81f;
     private bool isGrounded;
     public float JumpForce;
-
-
+    public int rotationSpeed = 2;
+    private Vector2 inputMovement;
+    public Transform playerCamera;
     private void Awake() // esto se llama antes de que inicie el juego recomendable para cosas como rigybidy etc
     {
 
         rigidBody = GetComponent<Rigidbody>();
         isGrounded = true;
+
     }
     void Start()
     {
@@ -26,10 +28,30 @@ public class MyNewPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+  
+            Vector3 camForward = playerCamera.transform.forward;
+            Vector3 camRight = playerCamera.transform.right;
+
+            camForward.y = 0;
+            camRight.y = 0;
+
+            camForward.Normalize();
+            camRight.Normalize();
+
+            Vector3 movement = camForward * moveInput.y + camRight * moveInput.x;
+
+            if (movement != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(movement);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            }
+
+            rigidBody.AddForce(movement * movementSpeed, ForceMode.Impulse);
+       
 
 
 
-        rigidBody.AddForce(moveInput.x * movementSpeed, 0f, moveInput.y * movementSpeed, ForceMode.Impulse);
+
     }
     public void OnJump(InputAction.CallbackContext context) //me da lo que esta guardando del evento. cuando toque el boton usar el on antes siempre
     {
