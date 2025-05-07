@@ -10,6 +10,7 @@ public class MyNewPlayer : MonoBehaviour
     private bool isGrounded;
     public float JumpForce;
 
+
     private void Awake() // esto se llama antes de que inicie el juego recomendable para cosas como rigybidy etc
     {
 
