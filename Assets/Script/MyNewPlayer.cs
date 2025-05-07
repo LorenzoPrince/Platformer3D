@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem; //para llamar al paquete de el inputsystem nuevo
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 // [RequireComponent(typeof(CharacterController))] //previene errores agrega automaticamente unity el componente
 public class MyNewPlayer : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class MyNewPlayer : MonoBehaviour
     public int rotationSpeed = 2;
     private Vector2 inputMovement;
     public Transform playerCamera;
+
     private bool checkpoint1 = false;
+
+    public GameObject panelUI;
     private void Awake() // esto se llama antes de que inicie el juego recomendable para cosas como rigybidy etc
     {
 
@@ -25,6 +29,7 @@ public class MyNewPlayer : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        panelUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -101,6 +106,7 @@ public class MyNewPlayer : MonoBehaviour
         }
         if (contraLoQueChoque.gameObject.CompareTag("Checkpoint"))
         {
+            activatePanel();
             checkpoint1 = true;
         }
         if (contraLoQueChoque.gameObject.CompareTag("CoinEnd"))
@@ -116,5 +122,14 @@ public class MyNewPlayer : MonoBehaviour
     public void checkpointActivity()
     {
         transform.position = new Vector3(-8.466f, -8.32f, 330.7f);
+    }
+    public void activatePanel()
+    {
+        panelUI.SetActive(true);
+        Invoke(nameof(offPanel), 3f);
+    }
+    public void offPanel()
+    {
+        panelUI.SetActive(false);
     }
 }
