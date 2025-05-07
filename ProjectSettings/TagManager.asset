@@ -8,6 +8,7 @@ TagManager:
   - Coin1
   - Coin2
   - Coin3
+  - Death
   layers:
   - Default
   - TransparentFX
