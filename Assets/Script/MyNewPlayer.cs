@@ -16,8 +16,8 @@ public class MyNewPlayer : MonoBehaviour
     {
 
         rigidBody = GetComponent<Rigidbody>();
-        isGrounded = true;
 
+        rigidBody.freezeRotation = true; // evitar caídas por rotación física
     }
     void Start()
     {
