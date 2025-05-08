@@ -15,6 +15,12 @@ public class MyNewPlayer : MonoBehaviour
     private Vector2 inputMovement;
     public Transform playerCamera;
 
+
+    public AudioSource audioSource1; //lamo para el audio
+    public AudioSource audioSource2; //lamo para el audio
+
+
+
     private bool checkpoint1 = false;
 
     public GameObject panelUI;
@@ -27,9 +33,14 @@ public class MyNewPlayer : MonoBehaviour
     }
     void Start()
     {
+        panelUI.SetActive(false);
+
+        audioSource2.Stop();//Aseguro que no arranque este
+        audioSource1.Play();//este si
+        audioSource1.loop = true; //para que se lupee
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        panelUI.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -108,6 +119,9 @@ public class MyNewPlayer : MonoBehaviour
         {
             activatePanel();
             checkpoint1 = true;
+            audioSource1.Stop();
+            audioSource2.Play();
+            audioSource2.loop = true; //para que se lupee
         }
         if (contraLoQueChoque.gameObject.CompareTag("CoinEnd"))
         {
