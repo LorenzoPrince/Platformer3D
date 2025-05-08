@@ -125,7 +125,7 @@ public class MyNewPlayer : MonoBehaviour
         }
         if (contraLoQueChoque.gameObject.CompareTag("CoinEnd"))
         {
-
+            SceneManager.LoadScene("MenuFinal");
         }
 
     }
